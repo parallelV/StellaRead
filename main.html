@@ -171,18 +171,18 @@ select { border:1px solid #ccc; border-radius:8px; padding:10px; font-weight:500
 <script>
 // Data
   const books = [
-    { title:"Harry Potter Vol. 1", author:"J.K. Rowling - 1997", rating:4, cover:"book covers/harry.jpg", description:"A young wizard's journey begins." },
-    { title:"The Subtle Art of Not Giving a F*ck", author:"Mark Manson - 2016", rating:5, cover:"book covers/fck.jpg", description:"A guide to living a better life." },
-    { title:"True Beauty", author:"Priscilla Wu - 2018", rating:4, cover:"book covers/tb.jpg", description:"A story about inner and outer beauty." },
-    { title:"The Road 🌫️🚶‍♂️", author:"Cormac McCarthy – 2006", rating:3, cover:"book covers/road.jpg", description:"A haunting tale of a father and son struggling to survive in a post-apocalyptic world." },
-    { title:"The Hunger Games 🏹🔥", author:"Suzanne Collins – 2008", rating:4, cover:"book covers/hunger.jpg", description:"A brave young girl fights for survival in a deadly televised competition." },
-    { title:"The Night Circus 🎪🌙", author:"Erin Morgenstern – 2011", rating:5, cover:"book covers/circus.jpg", description:"A magical circus becomes the stage for a fierce competition between two young illusionists." },
-    { title:"The Fault in Our Stars 💔💫", author:"John Green – 2012", rating:2, cover:"book covers/fault.jpg", description:"Two teens with cancer fall in love and learn the meaning of life, love, and loss." },
-    { title:"Gone Girl 🕵️‍♀️🌀", author:"Gillian Flynn – 2012", rating:4, cover:"book covers/gone.jpg", description:"A husband becomes the prime suspect when his wife mysteriously disappears." },
-    { title:"The Martian 🚀🪐", author:"Andy Weir – 2011", rating:3, cover:"book covers/martian.jpg", description:"An astronaut stranded on Mars uses science and wit to survive alone on the red planet." },
-    { title:"The Midnight Library ⏳📚", author:"Matt Haig – 2020", rating:3, cover:"book covers/midnight.jpg", description:"A woman explores alternate versions of her life in a mystical library between life and death." },
-    { title:"The Hobbit 💫👶", author:"J.R.R. Tolkien – 1937", rating:4, cover:"book covers/hobbit.PNG", description:"A timid hobbit embarks on an epic quest to reclaim a lost dwarven treasure guarded by a dragon." },
-    { title:"The Kite Runner 🪁🏃‍♂️", author:"Khaled Hosseini – 2003", rating:2, cover:"book covers/kite.jpg", description:"A man confronts his past and seeks redemption for a childhood betrayal in Afghanistan." }
+    { title:"Harry Potter Vol. 1", author:"J.K. Rowling - 1997", rating:4, cover:"book covers/harry.jpg", description:"A young wizard's journey begins.", link:"https://kvongcmehsanalibrary.wordpress.com/wp-content/uploads/2021/07/harrypotter.pdf" },
+    { title:"The Subtle Art of Not Giving a F*ck", author:"Mark Manson - 2016", rating:5, cover:"book covers/fck.jpg", description:"A guide to living a better life.", link:"https://bit.ly/4nUw8mN" },
+    { title:"True Beauty", author:"Priscilla Wu - 2018", rating:4, cover:"book covers/tb.jpg", description:"A story about inner and outer beauty.", link:"https://bit.ly/trueBeauty" },
+    { title:"The Road 🌫️🚶‍♂️", author:"Cormac McCarthy – 2006", rating:3, cover:"book covers/road.jpg", description:"A haunting tale of a father and son struggling to survive in a post-apocalyptic world.", link:"https://bit.ly/the_road_mc" },
+    { title:"The Hunger Games 🏹🔥", author:"Suzanne Collins – 2008", rating:4, cover:"book covers/hunger.jpg", description:"A brave young girl fights for survival in a deadly televised competition.", link:"https://bit.ly/hunger_games_col" },
+    { title:"The Night Circus 🎪🌙", author:"Erin Morgenstern – 2011", rating:5, cover:"book covers/circus.jpg", description:"A magical circus becomes the stage for a fierce competition between two young illusionists.", link:"https://tinyurl.com/nightCir" },
+    { title:"The Fault in Our Stars 💔💫", author:"John Green – 2012", rating:2, cover:"book covers/fault.jpg", description:"Two teens with cancer fall in love and learn the meaning of life, love, and loss.", link:"https://tinyurl.com/faultInOurSt4r" },
+    { title:"Gone Girl 🕵️‍♀️🌀", author:"Gillian Flynn – 2012", rating:4, cover:"book covers/gone.jpg", description:"A husband becomes the prime suspect when his wife mysteriously disappears.", link:"https://tinyurl.com/gon3Gurl" },
+    { title:"The Martian 🚀🪐", author:"Andy Weir – 2011", rating:3, cover:"book covers/martian.jpg", description:"An astronaut stranded on Mars uses science and wit to survive alone on the red planet.", link:"https://tinyurl.com/th3Martian" },
+    { title:"The Midnight Library ⏳📚", author:"Matt Haig – 2020", rating:3, cover:"book covers/midnight.jpg", description:"A woman explores alternate versions of her life in a mystical library between life and death.", link:"https://tinyurl.com/m1dnightLibr4ry" },
+    { title:"The Hobbit 💫👶", author:"J.R.R. Tolkien – 1937", rating:4, cover:"book covers/hobbit.png", description:"A timid hobbit embarks on an epic quest to reclaim a lost dwarven treasure guarded by a dragon.", link:"https://tinyurl.com/th3Hobbit" },
+    { title:"The Kite Runner 🪁🏃‍♂️", author:"Khaled Hosseini – 2003", rating:2, cover:"book covers/kite.jpg", description:"A man confronts his past and seeks redemption for a childhood betrayal in Afghanistan.", link:"https://tinyurl.com/kit3Runn3r" }
   ];
 
   let displayedBooks = [...books];
@@ -242,11 +242,22 @@ select { border:1px solid #ccc; border-radius:8px; padding:10px; font-weight:500
     bookPopupAuthor.textContent = book.author;
     document.getElementById("bookPopupDesc").textContent = book.description;
     updateFavoriteButton(book.title);
+    const viewBookButton = document.getElementById("viewBook");
+    viewBookButton.onclick = () => viewBoo(bookIndex);
     bookPopup.style.display = "flex";
   }
 
   function updateFavoriteButton(title){
     favoriteButton.textContent = favorites.includes(title) ? "❤️" : "♡";
+  }
+
+  function viewBoo(index) {
+    const book = books[index];
+    if (book.link) {
+      window.open(book.link, "_blank");
+    } else {
+      alert("Sorry, digital copy not available.");
+    }
   }
 
   function clearReview(){
@@ -338,7 +349,7 @@ document.getElementById("sortSelect").addEventListener("change", (e) => {
         "<li>View Book Details</li>" +
         "<li>Rate a Book</li>" +
         "<li>Write a Review</li>" +
-        "<li>Delete Review</li>" +
+        "<li>Edit/Delete Review</li>" +
         "<li>Add to Favorites</li>" +
         "<li>Sort Books</li>" +
         "<li>Toggle Theme</li>" +
@@ -503,5 +514,4 @@ document.getElementById("sortSelect").addEventListener("change", (e) => {
 
 </body>
 </html>
-
 
