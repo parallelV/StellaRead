@@ -175,7 +175,47 @@
     </section>
   </main>
 
+  <div id="notification" style="
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: none;
+    z-index: 2000;
+  ">
+    Feature not yet available
+  </div>
+
 <script>
+  function showNotification(message) {
+    const notification = document.getElementById('notification');
+    notification.textContent = message;
+    notification.style.display = 'block';
+
+    setTimeout(() => {
+      notification.style.display = 'none';
+    }, 3000);
+  }
+
+  document.getElementById('socialGoogle').addEventListener('click', () => {
+    showNotification("FEATURE NOT YET AVAILABLE");
+  });
+
+  document.getElementById('socialFacebook').addEventListener('click', () => {
+    showNotification("FEATURE NOT YET AVAILABLE");
+  });
+
+  document.getElementById('socialOther').addEventListener('click', () => {
+    showNotification("FEATURE NOT YET AVAILABLE");
+  });
+
   const scriptURL = "https://script.google.com/macros/s/AKfycbyDEvh_PdsRDCWqpY8qpvq7yif7fY6hZMNHKzG-D2alxqftJS8x37hzXk5NCyQQ4ZV-JA/exec";
 
   const toggleBtn = document.getElementById("toggleLoginPassword");
