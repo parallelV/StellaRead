@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>StellaRead — Profile & Main</title>
+<title>StellaRead — Main Page</title>
+<link rel="icon" type="image/x-icon" href="logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -18,8 +19,13 @@ header { display:flex; justify-content:space-between; align-items:center; paddin
 header .left { display:flex; align-items:center; gap:14px; }
 header img { height:60px; width:60px; object-fit:cover; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.15); }
 .brand { font-size:1.3rem; font-weight:700; color:var(--text); }
-nav button { background:transparent; border:none; cursor:pointer; margin-left:10px; font-weight:600; color:var(--accent); padding:8px 14px; border-radius:8px; transition: all 0.2s ease; }
-nav button:hover { background: rgba(47,107,237,0.1); transform:translateY(-1px); }
+.tagline { font-size:.9rem; color:var(--muted); }
+nav { display:flex; gap:10px; }
+nav button { background:transparent; border:none; cursor:pointer; font-weight:600; color:var(--accent); padding:8px 14px; border-radius:8px; transition:all .2s ease; }
+nav button:hover { background:rgba(47,107,237,.1); transform:translateY(-1px); }
+.menu-toggle { display:none; font-size:1.5rem; background:none; border:none; color:var(--accent); cursor:pointer; }
+@media(max-width:768px){ nav { position:absolute; top:70px; right:0; background:var(--card); box-shadow:var(--shadow); padding:1rem; border-radius:8px; flex-direction:column; gap:.5rem; display:none; } nav.show { display:flex; } .menu-toggle { display:block; } }
+
 main { max-width:1000px; margin:2rem auto; padding:0 1rem; }
 
 /* cards n inputs */
@@ -50,7 +56,7 @@ select { border:1px solid #ccc; border-radius:8px; padding:10px; font-weight:500
 
 /* pop up ng books */
 #bookPopup { position:fixed; inset:0; display:none; align-items:center; justify-content:center; background: rgba(0,0,0,0.5); z-index:2000; }
-#bookPopup .box { position:relative; background:var(--card); color:var(--text); padding:2rem; border-radius:18px; max-width:450px; width:90%; text-align:center; display:flex; flex-direction:column; align-items:center; gap:1rem; box-shadow:0 20px 60px rgba(0,0,0,0.4); }
+#bookPopup .box { position:relative; background:var(--card); color:var(--text); padding:2rem; border-radius:18px; max-width:450px; width:90%; text-align:center; display:flex; flex-direction:column; align-items:center; gap:1rem; box-shadow:0 20px 60px rgba(0,0,0,0.4); max-height: 90vh; overflow-y: auto; padding-bottom: 1.5rem;}
 #bookPopup button.close { position:absolute; top:12px; right:12px; background:transparent; border:none; font-size:1.4rem; cursor:pointer; color:var(--muted); }
 #bookPopup .actions { display:flex; gap:0.5rem; margin-top:0.8rem; flex-wrap:wrap; }
 #bookPopup .actions button { flex:1; min-width:100px; }
@@ -68,39 +74,42 @@ select { border:1px solid #ccc; border-radius:8px; padding:10px; font-weight:500
 </style>
 </head>
 <body data-theme="light">
-  <header>
-    <div class="left">
-      <img src="logo.png" alt="StellaRead logo">
-      <div>
-        <div class="brand">Your Digital Library</div>
-        <div style="font-size:.9rem;color:var(--muted)">— StellaRead</div>
+    <header>
+      <div class="left">
+        <img src="logo.png" alt="StellaRead logo" />
+        <div>
+          <div class="brand">Your Digital Library</div>
+          <div class="tagline">— StellaRead</div>
+        </div>
       </div>
-    </div>
-    <nav>
-      <button id="navProfile">Profile</button>
-      <button id="navHome">Home</button>
-      <button id="tasks">Tasks 📝</button>
-      <button id="toggleTheme">Theme 🌙</button>
-    </nav>
-  </header>
+
+      <button class="menu-toggle" id="menuToggle">☰</button>
+
+      <nav id="navMenu">
+        <button id="navProfile">Profile</button>
+        <button id="navHome">Home</button>
+        <button id="tasks">Tasks 📝</button>
+        <button id="toggleTheme">Theme 🌙</button>
+      </nav>
+    </header>
 
   <main>
     <section id="profilePage" class="card">
       <h2>👤 Profile</h2>
       <form id="profileForm">
-        <label for="name">Full Name</label>
+        <label for="name">Full Name🪪</label>
         <input type="text" id="name" value="Guest Reader">
 
-        <label for="email">Email</label>
+        <label for="email">Email📧</label>
         <input type="email" id="email" value="guest@stellaread.com">
 
-        <label for="bio">Bio</label>
+        <label for="bio">Bio📝</label>
         <textarea id="bio">Book lover and curious mind.</textarea>
 
-        <label for="dob">Date of Birth</label>
+        <label for="dob">Date of Birth📅</label>
         <input id="dob" type="date" required>
 
-        <label for="phone">Phone Number</label>
+        <label for="phone">Phone Number📞 </label>
         <input id="phone" type="tel" placeholder="09*********" required>
 
         <button type="submit" class="btn">Save Profile</button>
@@ -141,11 +150,13 @@ select { border:1px solid #ccc; border-radius:8px; padding:10px; font-weight:500
 
         <div class="actions">
           <button id="viewBook" class="btn">View Book</button>
-          <button id="writeReview" class="btn">Write a Review</button>
+          <button id="writeReview" class="btn">Rate a Book & Write a Review</button>
           <button id="deleteReview" class="btn">Delete Review</button>
         </div>
 
+        
         <div class="review-section" id="reviewSection">
+          <b>Book rating:</b><br>
           <div class="review-stars" id="reviewStars">
             <span data-star="1">★</span>
             <span data-star="2">★</span>
@@ -153,7 +164,7 @@ select { border:1px solid #ccc; border-radius:8px; padding:10px; font-weight:500
             <span data-star="4">★</span>
             <span data-star="5">★</span>
           </div>
-          <textarea id="reviewText" placeholder="Write your review here..."></textarea>
+          <textarea id="reviewText" placeholder="Share your thoughts..."></textarea>
           <button id="submitReview" class="btn">Submit Review</button>
         </div>
       </div>
@@ -171,9 +182,9 @@ select { border:1px solid #ccc; border-radius:8px; padding:10px; font-weight:500
 <script>
 // Data
   const books = [
-    { title:"Harry Potter Vol. 1", author:"J.K. Rowling - 1997", rating:4, cover:"book covers/harry.jpg", description:"A young wizard's journey begins.", link:"https://kvongcmehsanalibrary.wordpress.com/wp-content/uploads/2021/07/harrypotter.pdf" },
-    { title:"The Subtle Art of Not Giving a F*ck", author:"Mark Manson - 2016", rating:5, cover:"book covers/fck.jpg", description:"A guide to living a better life.", link:"https://bit.ly/4nUw8mN" },
-    { title:"True Beauty", author:"Priscilla Wu - 2018", rating:4, cover:"book covers/tb.jpg", description:"A story about inner and outer beauty.", link:"https://bit.ly/trueBeauty" },
+    { title:"Harry Potter Vol. 1🔮🪄", author:"J.K. Rowling - 1997", rating:4, cover:"book covers/harry.jpg", description:"A young wizard's journey begins.", link:"https://kvongcmehsanalibrary.wordpress.com/wp-content/uploads/2021/07/harrypotter.pdf" },
+    { title:"The Subtle Art of Not Giving a F*ck🩹🧘", author:"Mark Manson - 2016", rating:5, cover:"book covers/fck.jpg", description:"A guide to living a better life.", link:"https://bit.ly/4nUw8mN" },
+    { title:"True Beauty💄🧖🏻‍♀️", author:"Priscilla Wu - 2018", rating:4, cover:"book covers/tb.jpg", description:"A story about inner and outer beauty.", link:"https://bit.ly/trueBeauty" },
     { title:"The Road 🌫️🚶‍♂️", author:"Cormac McCarthy – 2006", rating:3, cover:"book covers/road.jpg", description:"A haunting tale of a father and son struggling to survive in a post-apocalyptic world.", link:"https://bit.ly/the_road_mc" },
     { title:"The Hunger Games 🏹🔥", author:"Suzanne Collins – 2008", rating:4, cover:"book covers/hunger.jpg", description:"A brave young girl fights for survival in a deadly televised competition.", link:"https://bit.ly/hunger_games_col" },
     { title:"The Night Circus 🎪🌙", author:"Erin Morgenstern – 2011", rating:5, cover:"book covers/circus.jpg", description:"A magical circus becomes the stage for a fierce competition between two young illusionists.", link:"https://tinyurl.com/nightCir" },
@@ -259,7 +270,7 @@ select { border:1px solid #ccc; border-radius:8px; padding:10px; font-weight:500
       alert("Sorry, digital copy not available.");
     }
   }
-
+  
   function clearReview(){
     reviewText.value = "";
     Array.from(reviewStars.children).forEach(s => s.classList.remove("selected"));
@@ -349,7 +360,7 @@ document.getElementById("sortSelect").addEventListener("change", (e) => {
         "<li>View Book Details</li>" +
         "<li>Rate a Book</li>" +
         "<li>Write a Review</li>" +
-        "<li>Edit/Delete Review</li>" +
+        "<li>Delete Review</li>" +
         "<li>Add to Favorites</li>" +
         "<li>Sort Books</li>" +
         "<li>Toggle Theme</li>" +
@@ -414,6 +425,15 @@ document.getElementById("sortSelect").addEventListener("change", (e) => {
     updateFavoriteButton(title);
     localStorage.setItem("favorites", JSON.stringify(favorites));
   });
+
+    // Toggle Mobile Nav Menu
+  const menuToggle = document.getElementById('menuToggle');
+  const navMenu = document.getElementById('navMenu');
+
+  menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('show');
+  });
+
 
   // Profile & DB
   const scriptURL = "https://script.google.com/macros/s/AKfycbyDEvh_PdsRDCWqpY8qpvq7yif7fY6hZMNHKzG-D2alxqftJS8x37hzXk5NCyQQ4ZV-JA/exec";
@@ -497,7 +517,7 @@ document.getElementById("sortSelect").addEventListener("change", (e) => {
           <h2 style="color:#2f6bed;margin-top:0;">✅ Task Completed!</h2>
           <p style="margin:0.5rem 0 1rem;">You accomplished Task 12 (Log Out). This concludes the Usability Testing.</p>
           <p style="margin-bottom:1rem;">Please proceed to answer the survey by clicking the link below:</p>
-          <a href="#" target="_blank" style="display:inline-block;color:#fff;background:#31493c;padding:10px 16px;border-radius:8px;text-decoration:none;font-weight:600;">Go to Survey</a>
+          <a href="https://forms.gle/8157Lmc3T8QMDSF9A" target="_blank" style="display:inline-block;color:#fff;background:#31493c;padding:10px 16px;border-radius:8px;text-decoration:none;font-weight:600;">Go to Survey</a>
           <br><br>
           <button id="closeLogoutPopup" style="margin-top:8px;padding:8px 14px;border:none;border-radius:8px;background:#ccc;cursor:pointer;font-weight:600;">Close</button>
         </div>
@@ -514,5 +534,4 @@ document.getElementById("sortSelect").addEventListener("change", (e) => {
 
 </body>
 </html>
-
 
