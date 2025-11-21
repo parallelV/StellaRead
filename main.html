@@ -247,6 +247,8 @@ select { border:1px solid #ccc; border-radius:8px; padding:10px; font-weight:500
   function openBookPopup(bookIndex){
     const book = displayedBooks[bookIndex];
     selectedBookIndex = bookIndex;
+    reviewSection.style.display = "none";
+    clearReview();
     bookPopupCover.src = book.cover;
     bookPopupTitle.textContent = book.title;
     bookPopupRating.textContent = "⭐".repeat(book.rating) + "☆".repeat(5 - book.rating);
@@ -534,5 +536,6 @@ document.getElementById("sortSelect").addEventListener("change", (e) => {
 
 </body>
 </html>
+
 
 
