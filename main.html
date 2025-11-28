@@ -313,6 +313,7 @@ select { border:1px solid #ccc; border-radius:8px; padding:10px; font-weight:500
     // Empty search detection
     if (searchValue === "") {
       alert("Search area is empty.");
+      renderBooks(books);
       return;
     }
 
@@ -559,3 +560,4 @@ document.getElementById("sortSelect").addEventListener("change", (e) => {
 
 </body>
 </html>
+
