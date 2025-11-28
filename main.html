@@ -121,7 +121,7 @@ select { border:1px solid #ccc; border-radius:8px; padding:10px; font-weight:500
       <div class="toolbar">
         <div class="search">
           <input type="text" id="searchInput" placeholder="Search by title or author...">
-          <button id="searchBtn" class="btn">Search</button>
+          <button id="searchBtn" class="btn">Search🔍</button>
         </div>
         <select id="sortSelect">
           <option value="title">Sort by Title (A–Z)</option>
@@ -307,12 +307,23 @@ select { border:1px solid #ccc; border-radius:8px; padding:10px; font-weight:500
 
   // Search & Sort
   document.getElementById("searchBtn").addEventListener("click", () => {
-  const term = document.getElementById("searchInput").value.toLowerCase();
-  const filtered = books.filter(b =>
-    b.title.toLowerCase().includes(term) || b.author.toLowerCase().includes(term)
-  );
-  renderBooks(filtered);
-  showTask("You accomplished Task 4 (Search a Book) — Please proceed to Task 5 (View Book Details).");
+    const searchInput = document.getElementById("searchInput");
+    const searchValue = searchInput.value.trim().toLowerCase();
+
+    // Empty search detection
+    if (searchValue === "") {
+      alert("Search area is empty.");
+      return;
+    }
+
+    // Filter books
+    const filtered = books.filter(b =>
+      b.title.toLowerCase().includes(searchValue) ||
+      b.author.toLowerCase().includes(searchValue)
+    );
+
+    renderBooks(filtered);
+    showTask("You accomplished Task 4 (Search a Book) — Please proceed to Task 5 (View Book Details).");
   });
 
 document.getElementById("sortSelect").addEventListener("change", (e) => {
@@ -393,22 +404,34 @@ document.getElementById("sortSelect").addEventListener("change", (e) => {
   });
 
   // Submit Review
-  document.getElementById("submitReview").addEventListener("click", ()=>{
-    if(selectedBookIndex === null) return;
+  document.getElementById("submitReview").addEventListener("click", () => {
+    if (selectedBookIndex === null) return;
+    const reviewTextValue = reviewText.value.trim();
+    if (reviewTextValue === "") {
+      alert("Please write a review before submitting.");
+      return;
+    }
+
     const book = displayedBooks[selectedBookIndex];
     reviews[book.title] = {
       rating: getReviewRating(),
-      text: reviewText.value.trim()
+      text: reviewTextValue
     };
     reviewSection.style.display = "none";
     clearReview();
     showTask(`You've Accomplished Task 6 and 7 (Rated and Reviewed "${book.title}") — Please proceed to Task 8 (Delete Review).`);
   });
 
+
   // Delete Review
-  document.getElementById("deleteReview").addEventListener("click", ()=>{
-    if(selectedBookIndex === null) return;
+  document.getElementById("deleteReview").addEventListener("click", () => {
+    if (selectedBookIndex === null) return;
+
     const book = displayedBooks[selectedBookIndex];
+    if (!reviews[book.title]) {
+      alert("You haven't wrote a review for this book yet.");
+      return;
+    }
     delete reviews[book.title];
     showTask("You've Accomplished Task 8 (Delete a Review) — Please proceed to Task 9 (Add book to Favorites).");
   });
@@ -536,6 +559,3 @@ document.getElementById("sortSelect").addEventListener("change", (e) => {
 
 </body>
 </html>
-
-
-
