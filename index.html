@@ -1,141 +1,123 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>StellaRead — Sign Up</title>
   <link rel="icon" type="image/x-icon" href="logo.png">
-  <link rel="stylesheet" href="styles.css" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
-    :root {
-      --bg: #EFE9DD;
-      --card: #FFFFFF;
-      --muted: #6b6f6a;
-      --text: #2f2f2f;
-      --accent: #313E34;
-      --accent-strong: #24322a;
-      --radius: 12px;
-      --shadow: 0 12px 30px rgba(45,45,45,0.08);
-    }
+:root {
+  --bg: #EFE9DD;
+  --card: #FFFFFF;
+  --muted: #6b6f6a;
+  --text: #2f2f2f;
+  --accent: #313E34;
+  --accent-strong: #24322a;
+  --radius: 12px;
+  --shadow: 0 12px 30px rgba(45,45,45,0.08);
+  --google: #ea4335;
+  --google-hover: #34A835;
+  --facebook: #1877F2;
+  --facebook-hover: #145dbf;
+  --other: #6c757d;
+  --other-hover: #5a6268;
+}
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; font-family: 'Poppins', sans-serif; }
 
-    body {
-      font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      line-height: 1.4;
-    }
+body { background: var(--bg); color: var(--text); line-height: 1.4; }
 
-    .main-header {
-      width: 100%;
-      background: #fff;
-      padding: 18px 28px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      border-bottom: 1px solid rgba(0,0,0,0.06);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.04);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
+.main-header {
+  width: 100%;
+  background: #fff;
+  padding: 18px 28px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.04);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
 
-    .header-logo { height: 72px; width: auto; display: block; }
-    .header-text { display: flex; flex-direction: column; }
-    .brand-title { font-size: 20px; font-weight: 700; color: var(--text); }
-    .brand-sub { font-size: 14px; color: var(--muted); margin-top: 2px; }
+.header-logo { height: 72px; }
+.header-text { display: flex; flex-direction: column; }
+.brand-title { font-size: 20px; font-weight: 700; color: var(--text); }
+.brand-sub { font-size: 14px; color: var(--muted); margin-top: 2px; }
 
-    .page { min-height: 100vh; display: grid; place-items: center; padding: 26px; }
-    .card {
-      width: min(1100px, 100%);
-      background: var(--card);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      border: 1px solid rgba(0,0,0,0.03);
-    }
+.page { min-height: 100vh; display: grid; place-items: center; padding: 26px; }
+.card { width: min(1100px,100%); background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; border:1px solid rgba(0,0,0,0.03);}
+.content { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 36px 40px 44px; }
+.left { max-width: 520px; }
+.page-title { font-size:28px; font-weight:700; margin-bottom:8px; }
 
-    .content { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 36px 40px 44px; }
-    .left { max-width: 520px; }
-    .page-title { font-size: 28px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
-    .small-row { margin-top: 12px; display: flex; gap: 8px; align-items: center; }
+.form label { display:block; margin:12px 0 6px; font-size:0.95rem; color:var(--muted); font-weight:600; }
+.form input {
+  width:100%; padding:12px 14px; border-radius:10px; border:1px solid #e6e0d6; background:#fff; color:var(--text); font-size:1rem;
+}
+.form input:focus { box-shadow:0 8px 18px rgba(49,62,52,0.06); border-color:var(--accent-strong); }
 
-    .form { max-width: 480px; margin-top: 6px; }
-    .form label { display: block; margin: 12px 0 6px; font-size: 0.95rem; color: var(--muted); font-weight: 600; }
-    .form input {
-      width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid #e6e0d6;
-      background: #fff; color: var(--text); outline: none; font-size: 1rem;
-    }
-    .form input::placeholder { color: #a49e95; }
-    .form input:focus { box-shadow: 0 8px 18px rgba(49,62,52,0.06); border-color: var(--accent-strong); }
+.btn { display:inline-flex; align-items:center; justify-content:center; padding:12px 16px; border-radius:10px; border:none; cursor:pointer; font-weight:700; transition:all .12s ease; }
+.btn-primary { background:var(--accent); color:#fff; box-shadow:0 8px 20px rgba(49,62,52,0.08); font-size: 1.2rem;}
+.btn-primary:hover { background: var(--accent-strong); }
+.full { width:100%; margin-top:14px; }
 
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      padding: 12px 16px; border-radius: 10px; border: none; cursor: pointer;
-      font-weight: 700; transition: all .12s ease;
-    }
-    .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 8px 20px rgba(49,62,52,0.08); }
-    .btn-primary:hover { background: var(--accent-strong); }
-    .full { width: 100%; margin-top: 14px; }
+.social-row { display:flex; justify-content:center; gap:10px; margin-top:18px; flex-wrap:wrap; }
+.social-btn { display:inline-flex; align-items:center; justify-content:center; padding:10px 14px; border-radius:10px; border:none; cursor:pointer; font-weight:600; color:#fff; transition:all .2s ease; }
+.social-btn.google { background: var(--google); }
+.social-btn.google:hover { background: var(--google-hover); }
+.social-btn.facebook { background: var(--facebook); }
+.social-btn.facebook:hover { background: var(--facebook-hover); }
+.social-btn.other { background: var(--other); }
+.social-btn.other:hover { background: var(--other-hover); }
 
-    .row { margin-top: 10px; }
-    .kv { color: var(--muted); font-size: 0.95rem; }
-    .link { color: var(--accent); text-decoration: none; font-weight: 600; }
-    .link:hover { text-decoration: underline; }
+.row { margin-top:10px; }
+.kv { color: var(--muted); font-size:0.95rem; }
+.link { color: var(--accent); text-decoration:none; font-weight:600; }
+.link:hover { text-decoration:underline; }
 
-    .right { display: grid; place-items: center; }
-    .book-image { width: 380px; max-width: 100%; height: auto; object-fit: contain; }
-    .center { display: flex; align-items: center; justify-content: center; }
-    .error { color: #b00020; }
+.right { display:grid; place-items:center; }
+.book-image { width:380px; max-width:100%; height:auto; object-fit:contain; }
 
-    @media (max-width: 900px) {
-      .content { grid-template-columns: 1fr; padding: 22px; }
-      .right { order: -1; margin-bottom: 18px; }
-      .book-image { width: 260px; }
-      .header-logo { height: 56px; }
-    }
+.error { color:#b00020; margin-top:8px; }
 
-    #popup {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.4);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-    }
+#popup {
+  position: fixed; inset:0; background: rgba(0,0,0,0.4); display:none; align-items:center; justify-content:center; z-index:1000;
+}
+#popup .box { background:#fff; padding:2rem; border-radius:14px; text-align:center; max-width:300px; box-shadow:0 5px 30px rgba(0,0,0,0.3); }
+#popup h2 { margin:0 0 .5rem; color:#2f6bed; }
+#popup p { color:#444; margin-bottom:1rem; }
+#popup button { background:#31493c; color:#fff; border:none; padding:8px 14px; border-radius:8px; font-weight:600; cursor:pointer; }
+#popup button:hover { opacity:.9; }
 
-    #popup .box {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 14px;
-      text-align: center;
-      box-shadow: 0 5px 30px rgba(0,0,0,0.3);
-      max-width: 300px;
-      animation: fadeIn .3s ease;
-    }
+#notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #31493c;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 10px;
+  display: none;
+  z-index: 2000;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
 
-    #popup h2 { margin: 0 0 .5rem; color: #2f6bed; }
-    #popup p { color: #444; margin-bottom: 1rem; }
-    #popup button {
-      background: #31493c; color: #fff; border: none; padding: 8px 14px;
-      border-radius: 8px; font-weight: 600; cursor: pointer;
-    }
-    #popup button:hover { opacity: .9; }
+@media (max-width:900px) {
+  .content { grid-template-columns:1fr; padding:22px; }
+  .right { order:-1; margin-bottom:18px; }
+  .book-image { width:260px; }
+  .header-logo { height:56px; }
+}
 
-    @keyframes fadeIn {
-      from { transform: scale(0.9); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
   </style>
 </head>
-
 <body>
   <header class="main-header">
     <img src="logo.png" alt="StellaRead logo" class="header-logo">
@@ -146,7 +128,7 @@
   </header>
 
   <main class="page">
-    <section class="card" aria-label="StellaRead signup card">
+    <section class="card">
       <div class="content">
         <div class="left">
           <h1 class="page-title">Create Account</h1>
@@ -169,31 +151,31 @@
             <label for="password">Password</label>
             <div style="position:relative;">
               <input id="password" type="password" placeholder="Create a password" required>
-              <button type="button" id="togglePassword"
-                style="position:absolute;right:10px;top:8px;border:none;background:none;cursor:pointer;color:var(--muted);background-color: #2f2f2f; border-radius: 7px; font-size: x-large">
-                👁️
-              </button>
+              <button type="button" id="togglePassword" style="position:absolute;right:10px;top:8px;border:none;background:none;cursor:pointer;color:var(--muted);background-color: #2f2f2f; border-radius: 7px; font-size: x-large">👁️</button>
             </div>
 
             <label for="confirmPassword">Confirm Password</label>
             <div style="position:relative;">
               <input id="confirmPassword" type="password" placeholder="Confirm password" required>
-              <button type="button" id="toggleConfirm"
-                style="position:absolute;right:10px;top:8px;border:none;background:none;cursor:pointer;color:var(--muted);background-color: #2f2f2f; border-radius: 7px; font-size: x-large;">
-                👁️
-              </button>
+              <button type="button" id="toggleConfirm" style="position:absolute;right:10px;top:8px;border:none;background:none;cursor:pointer;color:var(--muted);background-color: #2f2f2f; border-radius: 7px; font-size: x-large">👁️</button>
             </div>
 
             <button class="btn btn-primary full" type="submit">Sign Up</button>
-            <p id="signupError" class="kv error" style="display:none" aria-live="assertive"></p>
+            <p id="signupError" class="kv error" aria-live="assertive"></p>
 
-            <div class="row small-row" style="margin-top:12px">
+            <div class="social-row">
+              <button class="social-btn google" id="socialGoogle">Sign in with Google&nbsp;<img src="google.png" width="30" height="30"></button>
+              <button class="social-btn facebook" id="socialFacebook">Sign in with Facebook&nbsp;<img src="fb.png" width="30" height="30"></button>
+              <button class="social-btn other" id="socialOther">Other</button>
+            </div>
+
+            <div class="row" style="margin-top:12px">
               <span class="kv">Already have an account?</span>
               <a href="login.html" class="link">Log In</a>
             </div>
           </form>
         </div>
-        <div class="right center" aria-hidden="true">
+        <div class="right">
           <img src="booktree.png" alt="book illustration" class="book-image">
         </div>
       </div>
@@ -207,12 +189,25 @@
       <button id="closePopup">OK</button>
     </div>
   </div>
+
+  <div id="notification"></div>
+
 <script>
+  function showNotification(message) {
+    const notification = document.getElementById('notification');
+    notification.textContent = message;
+    notification.style.display = 'block';
+    setTimeout(() => { notification.style.display = 'none'; }, 3000);
+  }
+
+  document.getElementById('socialGoogle').addEventListener('click', () => showNotification("FEATURE NOT YET AVAILABLE"));
+  document.getElementById('socialFacebook').addEventListener('click', () => showNotification("FEATURE NOT YET AVAILABLE"));
+  document.getElementById('socialOther').addEventListener('click', () => showNotification("FEATURE NOT YET AVAILABLE"));
+
   const scriptURL = "https://script.google.com/macros/s/AKfycbyDEvh_PdsRDCWqpY8qpvq7yif7fY6hZMNHKzG-D2alxqftJS8x37hzXk5NCyQQ4ZV-JA/exec";
 
   document.getElementById('signupForm').addEventListener('submit', async function(e) {
     e.preventDefault();
-
     const name = document.getElementById('fullName').value.trim();
     const username = document.getElementById('username').value.trim();
     const email = document.getElementById('email').value.trim().toLowerCase();
@@ -221,72 +216,44 @@
     const pw = document.getElementById('password').value;
     const confirm = document.getElementById('confirmPassword').value;
     const errEl = document.getElementById('signupError');
-    errEl.style.display = 'none';
-    errEl.textContent = '';
+    errEl.style.display='none'; errEl.textContent='';
 
-    if (!name || !username || !email || !pw || !confirm) {
-      errEl.style.display = 'block';
-      errEl.textContent = 'Please fill all required fields.';
-      return;
-    }
-    if (pw.length < 4) {
-      errEl.style.display = 'block';
-      errEl.textContent = 'Password must be at least 4 characters.';
-      return;
-    }
-    if (pw !== confirm) {
-      errEl.style.display = 'block';
-      errEl.textContent = 'Passwords do not match.';
-      return;
-    }
+    if(!name||!username||!email||!pw||!confirm){errEl.style.display='block'; errEl.textContent='Please fill all required fields.'; return;}
+    if(pw.length<4){errEl.style.display='block'; errEl.textContent='Password must be at least 4 characters.'; return;}
+    if(pw!==confirm){errEl.style.display='block'; errEl.textContent='Passwords do not match.'; return;}
 
-    const formData = new FormData();
-    formData.append("action", "signup");
-    formData.append("name", name);
-    formData.append("username", username);
-    formData.append("email", email);
-    formData.append("password", pw);
-    formData.append("phone", phone);
-    formData.append("dob", dob);
+    const formData=new FormData();
+    formData.append("action","signup");
+    formData.append("name",name);
+    formData.append("username",username);
+    formData.append("email",email);
+    formData.append("password",pw);
+    formData.append("phone",phone);
+    formData.append("dob",dob);
 
-    try {
-      const response = await fetch(scriptURL, { method: "POST", body: formData });
-      const result = await response.text();
-
-      if (result === "added") {
-        document.getElementById('popup').style.display = 'flex';
-      } else if (result === "exists") {
-        errEl.style.display = 'block';
-        errEl.textContent = 'Username or email already exists.';
-      } else {
-        errEl.style.display = 'block';
-        errEl.textContent = 'Something went wrong. Please try again.';
-      }
-    } catch (error) {
-      errEl.style.display = 'block';
-      errEl.textContent = 'Network error. Try again later.';
-    }
+    try{
+      const response=await fetch(scriptURL,{method:"POST",body:formData});
+      const result=await response.text();
+      if(result==="added"){document.getElementById('popup').style.display='flex';}
+      else if(result==="exists"){errEl.style.display='block'; errEl.textContent='Username or email already exists.';}
+      else{errEl.style.display='block'; errEl.textContent='Something went wrong. Please try again.';}
+    } catch(err){ errEl.style.display='block'; errEl.textContent='Network error. Try again later.';}
   });
 
-  document.getElementById('closePopup').addEventListener('click', () => {
-    document.getElementById('popup').style.display = 'none';
-    window.location.href = 'login.html';
-  });
+  document.getElementById('closePopup').addEventListener('click',()=>{document.getElementById('popup').style.display='none'; window.location.href='login.html';});
 
-  function setupShowPassword(btnId, inputId) {
-  const btn = document.getElementById(btnId);
-  const field = document.getElementById(inputId);
-
-  btn.addEventListener("click", () => {
-    const isHidden = field.type === "password";
-    field.type = isHidden ? "text" : "password";
-    btn.textContent = isHidden ? "🚫" : "👁️";
-  });
+  function setupShowPassword(btnId,inputId){
+    const btn=document.getElementById(btnId);
+    const field=document.getElementById(inputId);
+    btn.addEventListener("click",()=>{
+      const isHidden=field.type==="password";
+      field.type=isHidden?"text":"password";
+      btn.textContent=isHidden?"🚫":"👁️";
+    });
   }
-
-  setupShowPassword("togglePassword", "password");
-  setupShowPassword("toggleConfirm", "confirmPassword");
+  setupShowPassword("togglePassword","password");
+  setupShowPassword("toggleConfirm","confirmPassword");
 </script>
+
 </body>
 </html>
-
