@@ -7,7 +7,6 @@
   <link rel="icon" type="image/x-icon" href="logo.png">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-
     :root {
       --bg: #EFE9DD;
       --card: #FFFFFF;
@@ -19,25 +18,31 @@
       --shadow: 0 12px 30px rgba(45,45,45,0.08);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+    }
 
     body {
       font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.4;
+      line-height: 1.5;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
-
     .main-header {
       width: 100%;
       background: #fff;
-      padding: 18px 28px;
+      padding: 24px 36px;
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 18px;
       border-bottom: 1px solid rgba(0,0,0,0.06);
       box-shadow: 0 6px 16px rgba(0,0,0,0.04);
       position: sticky;
@@ -45,12 +50,32 @@
       z-index: 1000;
     }
 
-    .header-logo { height: 72px; width: auto; display: block; }
-    .header-text { display: flex; flex-direction: column; }
-    .brand-title { font-size: 20px; font-weight: 700; color: var(--text); }
-    .brand-sub { font-size: 14px; color: var(--muted); margin-top: 2px; }
+    .header-logo {
+      height: 80px;
+      width: auto;
+    }
 
-    .page { min-height: 100vh; display: grid; place-items: center; padding: 26px; }
+    .header-text {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .brand-title {
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .brand-sub {
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .page {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 40px 28px;
+    }
     .card {
       width: min(1100px, 100%);
       background: var(--card);
@@ -58,56 +83,137 @@
       box-shadow: var(--shadow);
       overflow: hidden;
       border: 1px solid rgba(0,0,0,0.03);
+      margin-top:-120px;
+    }
+    .content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 44px;
+      padding: 56px 60px 64px;
+      margin-top: -28px; 
     }
 
-    .content { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 36px 40px 44px; margin-top: -10px; }
-    .left { max-width: 520px; }
-    .page-title { font-size: 28px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .left {
+      max-width: 520px;
+    }
+    .page-title {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .form {
+      max-width: 480px;
+      margin-top: 12px;
+    }
 
-    .form { max-width: 480px; margin-top: 6px; }
-    .form label { display: block; margin: 12px 0 6px; font-size: 0.95rem; color: var(--muted); font-weight: 600; }
+    .form label {
+      display: block;
+      margin: 20px 0 8px;
+      font-size: 0.97rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
     .form input {
-      width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid #e6e0d6;
-      background: #fff; color: var(--text); outline: none; font-size: 1rem;
-    }
-    .form input::placeholder { color: #a49e95; }
-    .form input:focus { box-shadow: 0 8px 18px rgba(49,62,52,0.06); border-color: var(--accent-strong); }
-
-    .social-row {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 18px;
-      flex-wrap: wrap;
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 10px;
+      border: 1px solid #e6e0d6;
+      background: #fff;
+      font-size: 1rem;
+      color: var(--text);
     }
 
-    .social-btn {
-      display: inline-flex; gap: 8px; align-items: center;
-      padding: 10px 12px; border-radius: 10px;
-      background: #fff; border: 1px solid rgba(0,0,0,0.04);
-      cursor: pointer; font-weight: 600; color: var(--text);
+    .form input::placeholder {
+      color: #a49e95;
+    }
+
+    .form input:focus {
+      border-color: var(--accent-strong);
+      box-shadow: 0 8px 18px rgba(49,62,52,0.08);
     }
 
     .btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      padding: 12px 16px; border-radius: 10px; border: none;
-      cursor: pointer; font-weight: 700; transition: all .12s ease;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 14px 20px;
+      border-radius: 10px;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .12s ease;
     }
 
-    .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 8px 20px rgba(49,62,52,0.08); }
-    .btn-primary:hover { background: var(--accent-strong); }
-    .full { width: 100%; margin-top: 14px; }
+    .btn-primary {
+      background: #313E34;
+      color: white;
+      border: 1px solid var(--accent);
+      font-size: 1.25rem;
+    }
 
-    .row { margin-top: 10px; }
-    .kv { color: var(--muted); font-size: 0.95rem; }
-    .link { color: var(--accent); text-decoration: none; font-weight: 600; }
-    .link:hover { text-decoration: underline; }
+    .btn-primary:hover {
+      background: #EFE9DD;
+      color: var(--accent);
+      border-color: var(--accent-strong);
+    }
 
-    .right { display: grid; place-items: center; }
-    .book-image { width: 380px; max-width: 100%; height: auto; object-fit: contain; }
-    .error { color: #b00020; }
+    .full {
+      width: 100%;
+      margin-top: 26px;
+    }
 
-    /* Toggle Button */
+    .btn-secondary {
+      background: #313E34;
+      color: white;
+      border: 1px solid var(--accent);
+      font-size: 1.25rem;
+    }
+
+    .btn-secondary:hover {
+      background: #EFE9DD;
+      color: var(--accent);
+      border-color: var(--accent-strong);
+    }
+
+
+    .row {
+      margin-top: 10px;
+      font-size: 0.95rem;
+    }
+
+    .kv {
+      color: var(--muted);
+    }
+
+    .link {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .link:hover {
+      text-decoration: underline;
+    }
+
+    .right {
+      display: grid;
+      place-items: center;
+    }
+
+    .book-image {
+      width: 420px;
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .error {
+      color: #b00020;
+      margin-top: 6px;
+      font-size: 0.9rem;
+    }
+
     .toggle-btn {
       position: absolute;
       right: 10px;
@@ -115,15 +221,34 @@
       border: none;
       background: none;
       color: var(--muted);
-      cursor: pointer;
       font-weight: 600;
+      cursor: pointer;
     }
 
     @media (max-width: 900px) {
-      .content { grid-template-columns: 1fr; padding: 22px; }
-      .right { order: -1; margin-bottom: 18px; }
-      .book-image { width: 260px; }
-      .header-logo { height: 56px; }
+      .content {
+        grid-template-columns: 1fr;
+        padding: 32px 26px;
+        gap: 36px;
+      }
+
+      .right {
+        order: -1;
+        margin-bottom: 26px;
+      }
+
+      .book-image {
+        width: 280px;
+      }
+
+      .main-header {
+        padding: 18px 24px;
+        gap: 12px;
+      }
+
+      .header-logo {
+        height: 60px;
+      }
     }
   </style>
 </head>
@@ -155,15 +280,13 @@
             </div>
 
             <button class="btn btn-primary full" type="submit">Log In</button>
-
-            <div class="social-row">
-              <button class="social-btn" id="socialGoogle">Sign in with Google</button>
-              <button class="social-btn" id="socialFacebook">Sign in with Facebook</button>
-              <button class="social-btn" id="socialOther">Other</button>
-            </div>
+            <br><br>
+            <hr>
 
             <div class="row small-row">
-              <a class="link" href="index.html">Create account</a>
+              <button class="btn btn-secondary full" onclick="window.location.href='index.html'">
+                Create Account
+              </button>
             </div>
 
             <p id="loginError" class="kv error" style="display:none">Invalid credentials — try again.</p>
@@ -195,28 +318,6 @@
   </div>
 
 <script>
-  function showNotification(message) {
-    const notification = document.getElementById('notification');
-    notification.textContent = message;
-    notification.style.display = 'block';
-
-    setTimeout(() => {
-      notification.style.display = 'none';
-    }, 3000);
-  }
-
-  document.getElementById('socialGoogle').addEventListener('click', () => {
-    showNotification("FEATURE NOT YET AVAILABLE");
-  });
-
-  document.getElementById('socialFacebook').addEventListener('click', () => {
-    showNotification("FEATURE NOT YET AVAILABLE");
-  });
-
-  document.getElementById('socialOther').addEventListener('click', () => {
-    showNotification("FEATURE NOT YET AVAILABLE");
-  });
-
   const scriptURL = "https://script.google.com/macros/s/AKfycbyDEvh_PdsRDCWqpY8qpvq7yif7fY6hZMNHKzG-D2alxqftJS8x37hzXk5NCyQQ4ZV-JA/exec";
 
   const toggleBtn = document.getElementById("toggleLoginPassword");
